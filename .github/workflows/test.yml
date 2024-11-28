@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: build and test
-        run:
-          rsync -av ./ /root/ros2_ws/src/MyPackage/
+        run: |
+          rsync -av ./ /root/ros2_ws/src/mypkg/
           cd /root/ros2_ws
-          bash -xv ./src/MyPackage/test/test.bash /root
+          bash -xv ./src/mypkg/test/test.bash /root
