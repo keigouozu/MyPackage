@@ -8,6 +8,7 @@ class CpuUsagePublisher(Node):
     def __init__(self):
         super().__init__("cpu_usage_publisher")
         self.publisher_ = self.create_publisher(Float32, "cpu_usage", 10)
+        psutil.cpu_percent(interval=1.0)
         self.create_timer(1.0, self.timer_callback)
 
     def timer_callback(self):
