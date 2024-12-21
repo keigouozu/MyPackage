@@ -7,6 +7,7 @@
   <maintainer email="s23c1021jf@s.chibakoudai.jp">Keigo Uozu</maintainer>
   <license>BSD-3-clause</license>
   <exec_depend>rclpy</exec_depend>
+  <exec_depend>psutil</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>launch_ros</exec_depend>
 

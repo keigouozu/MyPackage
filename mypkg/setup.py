@@ -25,6 +25,7 @@ setup(
         'console_scripts': [
             'talker = mypkg.talker:main',
             'listener = mypkg.listener:main',
+            'cpu_usage_publisher = mypkg.cpu_usage:main',
         ],
     },
 )
