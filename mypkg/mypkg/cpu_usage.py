@@ -19,6 +19,7 @@ class CpuUsagePublisher(Node):
         msg = Float32()
         msg.data = cpu_usage
         self.pub.publish(msg)
+        self.get_logger().info(f"Current cpu usage: {cpu_usage}%")        
 
 def main():
     rclpy.init()
