@@ -19,11 +19,8 @@ class CpuUsagePublisher(Node):
         msg = Float32()
         msg.data = cpu_usage
         self.pub.publish(msg)
-        self.get_logger().info(f"CPU usage: {cpu_usage}%")
-
 
 def main():
     rclpy.init()
     node = CpuUsagePublisher()
     rclpy.spin(node)
-    rclpy.shutdown()
