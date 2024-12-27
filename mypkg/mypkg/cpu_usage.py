@@ -7,9 +7,9 @@ from rclpy.node import Node
 from std_msgs.msg import Float32  
 
 
-class CpuUsagePublisher(Node):
+class CpuUsage(Node):
     def __init__(self):
-        super().__init__("cpu_usage_publisher")
+        super().__init__("cpu_usage")
         self.pub = self.create_publisher(Float32, "cpu_usage", 10)
         psutil.cpu_percent(interval=1.0)
         self.create_timer(1.0, self.cb)
@@ -19,9 +19,18 @@ class CpuUsagePublisher(Node):
         msg = Float32()
         msg.data = cpu_usage
         self.pub.publish(msg)
-        self.get_logger().info(f"Current cpu usage: {cpu_usage}%")        
+        self.get_logger().info(f"Current cpu usage: {cpu_usage:.1f}%")        
 
 def main():
     rclpy.init()
-    node = CpuUsagePublisher()
-    rclpy.spin(node)
+    node = CpuUsage()
+    try:
+        rclpy.spin(node)
+    except rclpy.executors.ExternalShutdownException:
+        pass
+    except KeyboardInterrupt:
+        pass
+    finally:
+        if rclpy.ok():
+            node.destroy_node()
+            rclpy.shutdown()
